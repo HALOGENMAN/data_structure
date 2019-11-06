@@ -29,7 +29,24 @@ void insert_at_bottom(int x){
     temp->data = x;
     temp->next = NULL;
     if(top == NULL){
-        cout<<"\n ";
+        top = bottom = temp;
+    }
+    else{
+        temp->next = bottom->next;
+        bottom->next = temp;
+        bottom = temp;
+    }
+}
+
+void delete_from_top(){
+    node *temp = top;
+    if(top == NULL){
+        cout<<"\n list is empty";
+    }
+    else{
+        top = top->next;
+        bottom->next = top;
+        delete temp;
     }
 }
 
@@ -39,14 +56,25 @@ void print(){
         cout<<"\n this list is empty";
     }
     else{
-        while(temp != bottom->next){
+        while(temp != bottom){
             cout<<temp->data<<" ";
             temp = temp->next; 
         }
+        temp->next;
+        cout<<temp->data<<" ";
     }
 }
 
 int main(){
     insert_at_top(4);
+    insert_at_top(4);
+    insert_at_top(4);
+    //insert_at_top(4);
+    //insert_at_top(4);
+    //insert_at_bottom(2);
+    insert_at_bottom(2);
+    print();
+    cout<<endl;
+    delete_from_top();
     print();
 }
