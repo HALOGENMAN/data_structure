@@ -1,0 +1,28 @@
+static bool cmp(vector<int> &a,vector<int>&b){
+    if(a[0]<b[0]) return true;
+    return false;
+}
+int find(int a,vector<int> &b){
+    if(b[a]==-1) return a;
+    return find(b[a],b);
+}
+int Solution::solve(int A, vector<vector<int> > &B) {
+    vector<int> check(A+1,-1);
+    vector<vector<int>> a;
+    for(auto &i:B){
+        a.push_back({i[2],i[0],i[1]});
+    }
+    sort(a.begin(),a.end());
+    int ans=0;
+    for(auto &i:a){
+        
+        int aa = find(i[1],check);
+        int bb = find(i[2],check);
+        
+        if(aa==bb) continue;
+        check[aa]=bb;
+        ans+=i[0];
+        
+    }
+    return ans;
+}
